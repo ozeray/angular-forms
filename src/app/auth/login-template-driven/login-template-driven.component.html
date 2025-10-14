@@ -1,0 +1,46 @@
+<!-- THIS APPROACH IS TEMPLATE-DRIVEN FORMS: -->
+<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+  <!-- loginForm.form is of type FormGroup -->
+
+  <h2>Login</h2>
+
+  <div class="control-row">
+    <div class="control no-margin">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        name="email"
+        ngModel
+        required="Boş olamaz"
+        email
+        #email="ngModel"
+      />
+    </div>
+
+    <div class="control no-margin">
+      <label for="password">Password</label>
+      <input
+        id="password"
+        type="password"
+        name="password"
+        ngModel
+        required
+        minlength="6"
+        #password="ngModel"
+      />
+    </div>
+
+    <button class="button">Login</button>
+  </div>
+
+  <!-- @if (form.form.touched && form.form.invalid) { -->
+  <!-- Below will give error when the page loads for the first time,
+   since controls are not bound to form. Instead use tempalte varaibles set to ngModel
+   and use them as Angular form controls  -->
+  <!-- @if (form.form.controls["email"].touched &&
+  form.form.controls["password"].touched && form.form.invalid) { -->
+  @if (email.touched && password.touched && loginForm.form.invalid) {
+  <p class="control-error">Invalid values detected. Please check your input.</p>
+  }
+</form>
