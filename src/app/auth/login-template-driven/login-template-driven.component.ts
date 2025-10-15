@@ -22,7 +22,7 @@ export class TemplateDrivenLoginComponent {
   private destroyRef = inject(DestroyRef);
 
   constructor() {
-    // Save user's lates inputs to local storage and prepopulate them upon revisit if form
+    // Save user's latest inputs to local storage and prepopulate them upon revisit if form
     // is not yet submitted (because then we reset the form).
     // We use afterNextRender to do this once after the form is fully initialized,
     // and necessary changes applied to it.
@@ -63,10 +63,16 @@ export class TemplateDrivenLoginComponent {
     console.log(loginForm.form.value.email);
     console.log(loginForm.form.value.password);
 
+    // Cannot be used in template-driven forms, only available in reactive forms:
+    // console.log(loginForm.form.controls.email);
+
     // Can be used for dynamic validation logic changes:
     // loginForm.form.clearValidators();
     // loginForm.form.addValidators(..);
 
     loginForm.form.reset();
+
+    // For an example of creating custom validator for template-driven forms, visit
+    // https://angular.dev/guide/forms/form-validation#adding-custom-validators-to-template-driven-forms
   }
 }

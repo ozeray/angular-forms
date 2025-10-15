@@ -1,18 +1,29 @@
 <!-- THIS APPROACH IS RACTIVE FORMS: -->
-<form>
+
+<!-- By [formGroup]="form" directive we can defined our form reactively in TS: -->
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
   <h2>Login</h2>
 
   <div class="control-row">
     <div class="control no-margin">
       <label for="email">Email</label>
-      <input id="email" type="email" />
+      <input id="email" type="email" [formControl]="form.controls.email" />
     </div>
 
     <div class="control no-margin">
       <label for="password">Password</label>
-      <input id="password" type="password" />
+      <!-- formControlName is a shorter version of [formControl]="form.controls..-->
+      <input id="password" type="password" formControlName="password" />
     </div>
 
     <button class="button">Login</button>
   </div>
+
+  @if (emailIsInvalid) {
+  <p class="control-error">Invalid email. Please check your input.</p>
+  } @if (passwordIsInvalid) {
+  <p class="control-error">
+    Password needs at least 6 characters. Please check your input.
+  </p>
+  }
 </form>
