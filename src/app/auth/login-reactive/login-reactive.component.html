@@ -20,10 +20,10 @@
   </div>
 
   @if (emailIsInvalid) {
-  <p class="control-error">Invalid email. Please check your input.</p>
+  <p class="control-error">{{ emailIsInvalid }}</p>
   } @if (passwordIsInvalid) {
   <p class="control-error">
-    Password needs at least 6 characters. Please check your input.
+    {{ passwordIsInvalid }}
   </p>
   }
 </form>
